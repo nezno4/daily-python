@@ -15,7 +15,7 @@ def multiply(a: float, b: float) -> float:
 
 
 def divide(a: float, b: float) -> float:
-    """Divides the first number by the second. Raises an exception when dividing by zero."""
+    """Divides first number by second. Exception if dividing by zero."""
     if b == 0:
         raise ValueError("Cannot divide by zero!")
     return a / b
