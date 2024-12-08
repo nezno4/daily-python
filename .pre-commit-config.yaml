@@ -1,12 +1,12 @@
 repos:
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 24.10.0
     hooks:
       - id: black
         language_version: python3.13
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 5.0.4
+    rev: 7.1.1
     hooks:
       - id: flake8
         language_version: python3.13
@@ -48,4 +48,4 @@ repos:
         args: ['--pytest-test-first']
       - id: no-commit-to-branch
         args: ['main', 'master']
-      - id: equirements-txt-fixer
+      - id: requirements-txt-fixer
