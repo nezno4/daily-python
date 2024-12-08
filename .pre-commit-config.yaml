@@ -1,17 +1,6 @@
-repos:
-  - repo: https://github.com/psf/black
-    rev: 24.10.0
-    hooks:
-      - id: black
-        language_version: python3.13
-
-  - repo: https://github.com/PyCQA/flake8
-    rev: 7.1.1
-    hooks:
-      - id: flake8
-        language_version: python3.13
-      
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+  repos:
+ 
+ - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: check-added-large-files
@@ -49,3 +38,15 @@ repos:
       - id: no-commit-to-branch
         args: ['main', 'master']
       - id: requirements-txt-fixer
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        language_version: python3.13
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+        language_version: python3.13
