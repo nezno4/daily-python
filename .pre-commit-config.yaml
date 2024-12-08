@@ -16,7 +16,7 @@
         args: ['--indent', '4']
       - id: check-yaml
       - id: sort-simple-yaml
-        files: \.ya?ml$
+        files: ^(?!.*(config\.yaml|settings\.yml)$).*\.ya?ml$
       - id: check-toml
       - id: check-xml
       - id: file-contents-sorter
@@ -38,14 +38,12 @@
         args: ['main', 'master']
       - id: requirements-txt-fixer
 
-  repos:
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
       - id: black
         language_version: python3.13
 
-  repos:
   - repo: https://github.com/PyCQA/flake8
     rev: 7.1.1
     hooks:
