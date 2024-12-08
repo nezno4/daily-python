@@ -30,12 +30,13 @@
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: detect-aws-credentials
+        args: ['--allow-missing-credentials']
       - id: detect-private-key
       - id: forbid-submodules
       - id: name-tests-test
         args: ['--pytest-test-first']
       - id: no-commit-to-branch
-        args: ['main', 'master']
+        args: ['-b', 'main', '-b', 'master']
       - id: requirements-txt-fixer
 
   - repo: https://github.com/psf/black
