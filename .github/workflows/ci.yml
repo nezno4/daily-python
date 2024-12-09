@@ -33,9 +33,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install pre-commit
+      - name: Install pre-commit and Commitizen
         run: |
-          pip install pre-commit
+          pip install pre-commit commitizen
 
       - name: Run pre-commit hooks
         run: |
@@ -56,3 +56,12 @@ jobs:
         run: |
           curl -sSL https://deepsource.io/cli/install.sh | bash
           deepsource analyze
+      
+      - name: Bump version and create tag
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          cz bump --yes
+          
+      - name: Generate CHANGELOG.md
+        run: |
+          cz changelog --yes
