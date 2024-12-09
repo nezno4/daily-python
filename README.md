@@ -18,7 +18,7 @@
   - [What protection mechanisms or tools does the repository have](#what-protection-mechanisms-or-tools-does-therepository-have)
     - [Branch](#branch)
 	- [Hooks](#hooks)
-	- [Workflows](#workflows)
+	- [Workflows](#orkflows)
 
 
 ## Repository Description
@@ -47,11 +47,11 @@ In project, we use different conventional types of branches and commits to facil
 ### Pull Request Rules
 > [!IMPORTANT]
 > - <ins>Description:</ins> each pull request must contain a description of the changes made
-> - <ins>Merge Strategy:</ins> prefer squash
+> - <ins>Merge Strategy:</ins> prefer squash (only squash or rebase are allowed)
 > - <ins>No branch multiplication:</ins> after merging a pull request, the branch should be removed
 > - <ins>For Avoiding Conflicts:</ins>
 >   - kindly please minimize the lifespan of the branch
->   - kindly please work only on own files
+>   - kindly please work only on own files ! you can use file .github/CODEOWNER !
 >   - always find time on code review before merge
 
 ### Branch Description
@@ -253,9 +253,17 @@ flowchart TD
     C --> D[Cache Python Packages]
     D --> E[Set Up Python - 3.13]
     E --> F[Install Dependencies - requirements.txt]
-    F --> G[Install Pre-commit]
+    F --> G[Install Pre-commit and Commitizen]
     G --> H[Run Pre-commit Hooks]
     H --> I[Lint Code - flake8, black]
     I --> J[Run Tests with Coverage]
     J --> K[Run DeepSource Analysis]
-    K --> L[End]
+
+    K --> L{Is on main branch?}
+    L -->|Yes| M[Bump Version and Create Tag]
+    L -->|No| N[End]
+	
+	M --> O[Generate CHANGELOG.md]
+    O --> N
+
+    N --> P[End]
