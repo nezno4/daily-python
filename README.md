@@ -15,10 +15,10 @@
 	- [Naming Convention for Commit](#naming-convention-for-commit)
 	- [How Structure of Commit Looks Like](#how-structure-of-commit-looks-like)
   - [What Guides Us When Writing Code](#what-guides-us-when-writing-code)
-  - [What protection mechanisms or tools does the repository have](#what-protection-mechanisms-or-tools-does-therepository-have)
+  - [Protection mechanisms](#protection-mechanisms)
     - [Branch](#branch)
 	- [Hooks](#hooks)
-	- [Workflows](#orkflows)
+	- [Workflows](#workflows)
 
 
 ## Repository Description
@@ -98,13 +98,13 @@ The main development branch is named `main`.
 > [!TIP]
 > To maintain uniform naming for commits you can use the tool:
 >
-> **commitizen** (https://commitizen-tools.github.io/commitizen/)
+> [**commitizen**](https://commitizen-tools.github.io/commitizen/)
 
 #### How to Commit Changes by Commitizen
 
-**Step 1:** Install Python (https://www.python.org/downloads/)
+**Step 1:** [Install Python](https://www.python.org/downloads/)
 
-**Step 2:** Install Commitizen (https://pypi.org/project/commitizen/)
+**Step 2:** [Install Commitizen](https://pypi.org/project/commitizen/)
 
 **Step 3:** Stage changes in your files: `git add`
 
@@ -187,7 +187,7 @@ issue: #1
 >   - **TDD** (_Red-Green-Refactor_)
 >   - **_Given-When-Then_**
 
-### What protection mechanisms or tools does the repository have
+### Protection mechanisms
 
 #### Branch
 
@@ -243,9 +243,11 @@ issue: #1
 
 #### Workflows
 
-```markdown
+Below is the workflow .github\workflows\ci.yml
+
 ```mermaid
-flowchart TD
+
+graph TD;
     A[Start] --> B{Event Trigger}
     B -->|Push to any branch| C[Checkout Code]
     B -->|Pull Request to main| C
@@ -263,7 +265,7 @@ flowchart TD
     L -->|Yes| M[Bump Version and Create Tag]
     L -->|No| N[End]
 	
-	M --> O[Generate CHANGELOG.md]
-    O --> N
+    M --> O[Generate CHANGELOG.md]
+    O --> N[End]
 
-    N --> P[End]
+```
