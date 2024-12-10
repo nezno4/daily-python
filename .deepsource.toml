@@ -1,0 +1,17 @@
+version = 1
+
+[[analyzers]]
+name = "python"
+enabled = true
+
+[analyzers.python]
+runtime_version = "3.13"
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
+
+[[analyzers]]
+name = "secrets"
+enabled = true
+
