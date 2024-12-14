@@ -47,25 +47,21 @@ jobs:
           pip install flake8
           flake8 .
 
-      - name: Run tests with coverage
+      - name: Run tests and generate coverage report
         run: |
           coverage run -m pytest
-          coverage report
+          coverage xml -o coverage_reports/coverage.xml
       
       - name: Run DeepSource analysis
         run: |
           curl -sSL https://deepsource.io/cli/install.sh | bash
           deepsource analyze
-
-      - name: Generate coverage report
-        run: |
-          coverage xml
       
       - name: Report test coverage to DeepSource
         uses: deepsourcelabs/test-coverage-action@master
         with:
           key: python
-          coverage-file: coverage.xml
+          coverage-file: coverage_reports/coverage.xml
           dsn: ${{ secrets.DEEPSOURCE_DSN }}
       
       - name: Bump version and create tag
