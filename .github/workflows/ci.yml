@@ -32,6 +32,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install coverage
 
       - name: Install pre-commit and Commitizen
         run: |
@@ -48,14 +49,24 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pip install coverage
-          coverage run -m unittest discover
+          coverage run -m pytest
           coverage report
       
       - name: Run DeepSource analysis
         run: |
           curl -sSL https://deepsource.io/cli/install.sh | bash
           deepsource analyze
+
+      - name: Generate coverage report
+        run: |
+          coverage xml
+      
+      - name: Report test coverage to DeepSource
+        uses: deepsourcelabs/test-coverage-action@master
+        with:
+          key: python
+          coverage-file: coverage.xml
+          dsn: ${{ secrets.DEEPSOURCE_DSN }}
       
       - name: Bump version and create tag
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
