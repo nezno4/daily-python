@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [*/*]
+    branches: [*]
   pull_request:
     branches: [main]
 
@@ -33,10 +33,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install coverage
-
-      - name: Install pre-commit and Commitizen
-        run: |
-          pip install pre-commit commitizen
+          pip install flake8
+          pip install pre-commit
+          pip install commitizen
 
       - name: Run pre-commit hooks
         run: |
@@ -44,7 +43,6 @@ jobs:
 
       - name: Lint code
         run: |
-          pip install flake8
           flake8 .
 
       - name: Run tests and generate coverage report
@@ -54,8 +52,7 @@ jobs:
       
       - name: Run DeepSource analysis
         run: |
-          curl -sSL https://deepsource.io/cli/install.sh | bash
-          deepsource analyze
+          curl -sSL https://deepsource.io/cli/install.sh | bash deepsource analyze
       
       - name: Report test coverage to DeepSource
         uses: deepsourcelabs/test-coverage-action@master
